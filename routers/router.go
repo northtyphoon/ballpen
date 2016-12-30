@@ -6,5 +6,12 @@ import (
 )
 
 func init() {
+	// Remove default static path and add webpack output path
+	beego.DelStaticPath("/static")
+	beego.SetStaticPath("/dist", "dist")
+
+	// Add view router
 	beego.Router("/", &controllers.MainController{}, "get:Home")
+
+	// Add restful api router
 }
