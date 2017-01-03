@@ -1,7 +1,21 @@
-FROM golang:1.7.4
+FROM northtyphoon/beego:latest
 
 MAINTAINER Bin Du <northtyphoon@gmail.com>
 
-# Install beego & bee
-RUN go get github.com/astaxie/beego
-RUN go get github.com/beego/bee
+# Install app dependencies
+RUN mkdir -p "$GOPATH/src/github.com/northtyphoon/ballpen"
+WORKDIR "$GOPATH/src/github.com/northtyphoon/ballpen"
+COPY package.json "$GOPATH/src/github.com/northtyphoon/ballpen"
+RUN npm install
+
+# Bundle app source
+COPY . "$GOPATH/src/github.com/northtyphoon/ballpen"
+RUN npm run build-prod
+
+# App port
+EXPOSE 8080
+
+# Admin port
+EXPOSE 8088
+
+CMD [ "bee", "run" ]
