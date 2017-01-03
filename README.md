@@ -1,3 +1,3 @@
 # ballpen
 
-A hobby project based on beego + vuejs
+A hobby project built on beego + vuejs.
