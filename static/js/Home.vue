@@ -1,17 +1,23 @@
 <template>
   <div id="home">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
+    <hash />
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'A ballpen is very handy!'
+  import Hash from './Hash.vue'
+
+  export default {
+    data() {
+      return {
+        title: 'Ballpen Collection'
+      }
+    },
+    components: {
+      Hash
     }
   }
-}
 </script>
 
 <style>

@@ -14,4 +14,5 @@ func init() {
 	beego.Router("/", &controllers.MainController{}, "get:Home")
 
 	// Add restful api router
+	beego.Router("/api/hash", &controllers.HashController{})
 }
