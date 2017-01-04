@@ -3,7 +3,6 @@ package controllers
 import (
 	"crypto/md5"
 	"crypto/sha256"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 
@@ -40,17 +39,17 @@ func (c *HashController) Post() {
 	c.ServeJSON()
 }
 
-func hash(algortihm string, oriContent string) (string, error) {
-	if algortihm == "sha256" {
+func hash(algorithm string, oriContent string) (string, error) {
+	if algorithm == "sha256" {
 		h256 := sha256.New()
 		h256.Write([]byte(oriContent))
-		return base64.StdEncoding.EncodeToString(h256.Sum(nil)), nil
-	} else if algortihm == "md5" {
+		return fmt.Sprintf("%x", h256.Sum(nil)), nil
+	} else if algorithm == "md5" {
 		md5 := md5.New()
 		md5.Write([]byte(oriContent))
-		return base64.StdEncoding.EncodeToString(md5.Sum(nil)), nil
+		return fmt.Sprintf("%x", md5.Sum(nil)), nil
 	}
 
-	err := fmt.Errorf("The hash algorithm %s is not supported", algortihm)
+	err := fmt.Errorf("The hash algorithm %s is not supported", algorithm)
 	return "", err
 }

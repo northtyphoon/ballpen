@@ -43,3 +43,6 @@ dist/
 
 # project build output
 ballpen
+
+# debug output
+debug

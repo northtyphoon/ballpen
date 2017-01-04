@@ -10,7 +10,7 @@ func main() {
 	log := logs.NewLogger(10000)
 	log.SetLogger("console")
 
-	// The original view files are built and outputed to dist folder
+	// The original view files are built and output to dist folder
 	beego.SetViewsPath("dist/views")
 
 	beego.Run()
