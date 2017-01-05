@@ -8,17 +8,21 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"github.com/northtyphoon/ballpen/uuid"
 )
 
+// HashRequest represents a hash request payload
 type HashRequest struct {
 	Algorithm  string
 	OriContent string
 }
 
+// HashController is the hash API controller
 type HashController struct {
 	beego.Controller
 }
 
+// Post verb
 func (c *HashController) Post() {
 	var request HashRequest
 
@@ -42,14 +46,22 @@ func (c *HashController) Post() {
 func hash(algorithm string, oriContent string) (string, error) {
 	if algorithm == "sha256" {
 		h256 := sha256.New()
-		h256.Write([]byte(oriContent))
+		h256.Write(transformToUUID(oriContent))
 		return fmt.Sprintf("%x", h256.Sum(nil)), nil
 	} else if algorithm == "md5" {
 		md5 := md5.New()
-		md5.Write([]byte(oriContent))
+		md5.Write(transformToUUID(oriContent))
 		return fmt.Sprintf("%x", md5.Sum(nil)), nil
 	}
 
 	err := fmt.Errorf("The hash algorithm %s is not supported", algorithm)
 	return "", err
+}
+
+func transformToUUID(oriContent string) []byte {
+	if u, err := uuid.Parse(oriContent); err == nil {
+		return u[:]
+	}
+
+	return []byte(oriContent)
 }

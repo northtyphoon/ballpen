@@ -9,9 +9,14 @@
     
     // words - list of words to be always considered correct
     "words": [
+        "nginx",
+        "golang",
+        "gmail",
+        "woff",
         "astaxie",
         "beego",
         "ballpen",
+        "dockerfile",
         "northtyphoon"
     ],
     

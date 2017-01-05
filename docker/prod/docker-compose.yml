@@ -1,0 +1,12 @@
+webapp1:
+  image: northtyphoon/ballpen
+  container_name: ballpen_webapp1
+
+nginx:
+  build: .
+  dockerfile: nginx.dockerfile
+  container_name: ballpen_nginx
+  ports:
+    - "80:80"
+  links:
+    - webapp1

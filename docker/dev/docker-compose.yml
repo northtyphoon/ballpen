@@ -1,0 +1,16 @@
+webapp1:
+  image: northtyphoon/beego
+  volumes:
+    - "$GOPATH/src/github.com/northtyphoon/ballpen:/go/src/github.com/northtyphoon/ballpen"
+  working_dir: /go/src/github.com/northtyphoon/ballpen
+  command: bee run
+  container_name: ballpen_webapp1
+
+nginx:
+  build: .
+  dockerfile: nginx.dockerfile
+  container_name: ballpen_nginx
+  ports:
+    - "80:80"
+  links:
+    - webapp1
