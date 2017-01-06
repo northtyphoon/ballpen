@@ -8,7 +8,7 @@ WORKDIR "$GOPATH/src/github.com/northtyphoon/ballpen"
 COPY package.json "$GOPATH/src/github.com/northtyphoon/ballpen"
 RUN npm install
 
-# Bundle app source
+# Deploy app source
 COPY . "$GOPATH/src/github.com/northtyphoon/ballpen"
 RUN npm run build-prod
 
