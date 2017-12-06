@@ -3,5 +3,8 @@ services:
   ballpen:
     build: .
     image: ballpen:latest
+    ports:
+      - 8080:8080
+      - 8088:8088
 
 
