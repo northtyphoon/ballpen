@@ -20,7 +20,7 @@
     export default {
         data() {
             return {
-                description: 'Hi, I\'m the hash ballpen. What can I hash for you?',
+                description: 'Hi, I\'m the hash ballpen. What can I do for you?',
                 algorithm: 'sha256',
                 algorithmOptions: [
                     { text: 'SHA256', value: 'sha256' },
